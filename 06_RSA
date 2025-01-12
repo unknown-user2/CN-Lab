@@ -1,0 +1,52 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+import java.nio.charset.*;
+
+public class RSA{
+	public static void main(String[] args){
+		BigInteger p,q,N,phi,e,d;
+		int bitLength = 1024;
+		Random r = new Random();
+		
+		p = BigInteger.probablePrime(bitLength,r);
+		q = BigInteger.probablePrime(bitLength,r);
+		System.out.println("Prime number p: "+ p);
+		System.out.println("Prime number q: "+ q);
+		
+		N = p.multiply(q);
+		phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+		e = BigInteger.probablePrime(bitLength/2,r);
+		
+		while( phi.gcd(e).compareTo(BigInteger.ONE)>0 && e.compareTo(phi)<0){
+			e = e.add(BigInteger.ONE);
+		}
+		
+		d = e.modInverse(phi);
+		System.out.println("Public key is: "+ e);
+		System.out.println("Private key is: "+ d);
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the plain text: ");
+		String testString = sc.nextLine();
+		System.out.println("Encrypted String: "+ testString);
+		
+		//Bytes to String
+		StringBuilder result =  new StringBuilder();
+		for(byte b : testString.getBytes()){
+			result.append(Byte.toString(b));
+		}
+		System.out.println("String in bytes: "+result);
+		
+		byte[] encrypted = new BigInteger(testString.getBytes()).modPow(e,N).toByteArray();
+		byte[] decrypted = new BigInteger(encrypted).modPow(d,N).toByteArray();
+		
+		result.setLength(0);
+		for(byte b : decrypted){
+			result.append(Byte.toString(b));
+		}
+		System.out.println("Decrypted Bytes: "+result);
+		
+		System.out.println("Decrypted String: "+new String(decrypted, StandardCharsets.UTF_8));
+	}
+}
