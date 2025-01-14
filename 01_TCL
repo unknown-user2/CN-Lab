@@ -2,7 +2,7 @@ set ns [new Simulator]
 
 set ntrace [open name.tr w]
 $ns trace-all $ntrace
-set nametrace [open name.nam w]
+set namtrace [open name.nam w]
 $ns namtrace-all $namtrace
 
 proc Finish {} {
