@@ -5,7 +5,7 @@ $ns trace-all $ntrace
 set nametrace [open name.nam w]
 $ns namtrace-all $namtrace
 
-porc Finish {} {
+proc Finish {} {
 global ns ntrace namfile 
 $ns flush-trace
 close $ntrace
