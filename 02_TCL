@@ -50,7 +50,7 @@ $tcp0 set class_ 2
 
 Agent/Ping instproc recv {from rtt} {
 $self instvar node_
-puts "node [$node_ id] recieved ping anser from $from with time $rtt ms"
+puts "node [$node_ id] recieved ping answer from $from with time $rtt ms"
 }
 
 set p0 [new Agent/Ping]
