@@ -33,10 +33,11 @@ $ns duplex-link $n3 $n4 0.1Mb 10ms DropTail
 $ns duplex-link $n4 $n5 0.1Mb 10ms DropTail 
 
 $ns queue-limit $n2 $n3 2
+$ns duplex-link-op $n(2) $n(3) queuePos 0.5
 
 set tcp0 [new Agent/TCP]
 $ns attach-agent $n2 $tcp0
-set sick0 [new Agent/TCPSink]
+set sink0 [new Agent/TCPSink]
 $ns attach-agent $n4 $sink0
 $ns connect $tcp0 $sink0
 
