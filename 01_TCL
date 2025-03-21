@@ -2,14 +2,14 @@ set ns [new Simulator]
 
 set ntrace [open name.tr w]
 $ns trace-all $ntrace
-set namtrace [open name.nam w]
-$ns namtrace-all $namtrace
+set namfile [open name.nam w]
+$ns namtrace-all $namfile
 
 proc Finish {} {
 global ns ntrace namfile 
 $ns flush-trace
 close $ntrace
-close $namtrace
+close $namfile
 exec nam name.nam &
 exec echo "Number of pakets dropped are: " &
 exec grep -c "^d" name.tr &
@@ -46,7 +46,7 @@ $cbr0 set packetSize_ 100
 $cbr0 set rate_ 1Mb
 $cbr0 set random_ false
 $cbr0 attach-agent $tcp0
-$trc0 set class_ 1
+$tcp0 set class_ 1
 
 $ns at 0.0 "$cbr0 start"
 $ns at 5.0 "Finish"
