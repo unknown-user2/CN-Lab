@@ -1,17 +1,13 @@
 set ns [new Simulator]
 
-set ntrace [open name.tr w]
-$ns trace-all $ntrace
 set namfile [open name.nam w]
 $ns namtrace-all $namfile
-
 set winFile0 [open WinFile0 w]
 set winFile1 [open WinFile1 w]
 
 proc Finish {} {
-    global ns ntrace namfile
+    global ns namfile
     $ns flush-trace
-    close $ntrace
     close $namfile
     exec nam name.nam &
     exec xgraph WinFile0 WinFile1 &
