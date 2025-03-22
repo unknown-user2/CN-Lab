@@ -28,9 +28,9 @@ $ns flush-trace
 close $tracefile
 close $namfile
 
-exec nam name.nam &
+exec nam name11.nam &
 exec echo "Number of packets dropped is:" & 
-exec grep -c "^D" name.tr &
+exec grep -c "^D" name11.tr &
 exit 0
 }
 
