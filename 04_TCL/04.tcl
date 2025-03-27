@@ -11,7 +11,7 @@ $ns namtrace-all-wireless $namfile 1500 1500
 
 $ns node-config -adhocRouting DSDV \
 -llType LL \
--macType Mac/802_11 \
+-macType Mac \
 -ifqType Queue/DropTail \
 -ifqLen 20 \
 -phyType Phy/WirelessPhy \
