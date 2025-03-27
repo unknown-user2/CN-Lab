@@ -1,19 +1,19 @@
 set ns [new Simulator]
 
-set topo [new Topography]
-$topo load_flatgrid 1500 1500
-
 set tracefile [open name11.tr w]
 $ns trace-all $tracefile
 set namfile [open name11.nam w]
 $ns namtrace-all $namfile
 $ns namtrace-all-wireless $namfile 1500 1500
 
+set topo [new Topography]
+$topo load_flatgrid 1500 1500
+
 $ns node-config -adhocRouting DSDV \
 -llType LL \
--macType Mac \
 -ifqType Queue/DropTail \
 -ifqLen 20 \
+-macType Mac \
 -phyType Phy/WirelessPhy \
 -channelType Channel/WirelessChannel \
 -propType Propagation/TwoRayGround \
@@ -69,22 +69,22 @@ $ns initial_node_pos $n5 20
 
 set udp0 [new Agent/UDP]
 $ns attach-agent $n0 $udp0
-set null1 [new Agent/Null]
-$ns attach-agent $n4 $null1
-$ns connect $udp0 $null1
+set null0 [new Agent/Null]
+$ns attach-agent $n4 $null0
+$ns connect $udp0 $null0
 $udp0 set packetSize_ 1500
 
 set tcp0 [new Agent/TCP]
 $ns attach-agent $n3 $tcp0
-set sink1 [new Agent/TCPSink]
-$ns attach-agent $n5 $sink1
-$ns connect $tcp0 $sink1
+set sink0 [new Agent/TCPSink]
+$ns attach-agent $n5 $sink0
+$ns connect $tcp0 $sink0
 
 set cbr0 [new Application/Traffic/CBR]
-$cbr0 attach-agent $udp0
 $cbr0 set packetSize_ 1000
 $cbr0 set rate_ 1Mb
 $cbr0 set random_ null
+$cbr0 attach-agent $udp0
 
 set ftp0 [new Application/FTP]
 $ftp0 attach-agent $tcp0
