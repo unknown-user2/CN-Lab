@@ -14,7 +14,7 @@ class UDPClient {
         System.out.println("Enter the string in lowercase so that you receive the message in Uppercase from the server");
         String sentence = sc.nextLine();
         sendData = sentence.getBytes();
-        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 1443);
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
         clientSocket.send(sendPacket);
 
         DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
