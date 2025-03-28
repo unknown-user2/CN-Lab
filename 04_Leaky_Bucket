@@ -8,7 +8,7 @@ public class Leaky_Bucket{
 		System.out.print("Enter the bucket capacity: ");
 		int bucket_capacity = sc.nextInt();
 		
-		System.out.print("Enter buckey rate: ");
+		System.out.print("Enter bucket rate: ");
 		int bucket_rate = sc.nextInt();
 		
 		System.out.print("Enter the number of packets to be sent: ");
